@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Due Board — assignment & time tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <script type="module" crossorigin src="./assets/index-DeszeW1G.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-ChQp6-zm.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="title-block">
+      <h1>Due Board</h1>
+      <p>Add what's on your plate, see what needs you first, and get a nudge on how to work it in.</p>
+    </div>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">
+      <span id="themeIcon">🌙</span> <span id="themeLabel">Dark</span>
+    </button>
+  </header>
+
+  <div class="tip-note fade" id="tipNote" tabindex="0" role="group" aria-label="Time management tip. Rotates automatically; use left and right arrow keys to browse, hover to pause.">
+    <span class="tip-label">TIME MANAGEMENT <span class="tip-hint">— use ← →</span></span>
+    <p id="tipText">Loading tip…</p>
+    <div class="tip-progress"><div class="tip-progress-fill" id="tipProgress"></div></div>
+    <div class="tip-nav">
+      <button type="button" id="tipPrev" aria-label="Previous tip">←</button>
+      <button type="button" id="tipNext" aria-label="Next tip">→</button>
+    </div>
+  </div>
+
+  <div class="layout">
+
+    <div class="rail">
+      <section class="panel">
+        <h2 id="formHeading">Add an assignment</h2>
+        <div class="mode-switch" role="group" aria-label="How to add an assignment">
+          <button type="button" class="mode-btn active" id="modeFormBtn" aria-pressed="true">Form</button>
+          <button type="button" class="mode-btn" id="modeQuickBtn" aria-pressed="false">Quick add</button>
+        </div>
+
+        <form id="quickForm" hidden>
+          <div class="field">
+            <label for="quickText">Type it in one line</label>
+            <input type="text" id="quickText" placeholder="Problem set 4 CS 173 fri 5pm" autocomplete="off">
+          </div>
+          <p class="quick-preview" id="quickPreview" aria-live="polite"></p>
+          <div class="form-err" id="quickErr"></div>
+          <button type="submit" class="submit-btn">Pin to board</button>
+          <p class="quick-help">Include a due date: today, tomorrow, a weekday, or 11/3. Time (5pm) and course (CS 173) are optional.</p>
+        </form>
+
+        <form id="addForm">
+          <div class="field">
+            <label for="title">Assignment</label>
+            <input type="text" id="title" placeholder="Problem set 4" required>
+          </div>
+          <div class="field">
+            <label for="course">Course</label>
+            <input type="text" id="course" placeholder="CS 173" autocomplete="off">
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="dueMonth">Due date</label>
+              <div class="date-boxes" role="group" aria-label="Due date">
+                <input type="text" id="dueMonth" inputmode="numeric" placeholder="MM" maxlength="2" autocomplete="off" aria-label="Month">
+                <span aria-hidden="true">/</span>
+                <input type="text" id="dueDay" inputmode="numeric" placeholder="DD" maxlength="2" autocomplete="off" aria-label="Day">
+                <span aria-hidden="true">/</span>
+                <input type="text" id="dueYear" inputmode="numeric" placeholder="YYYY" maxlength="4" autocomplete="off" aria-label="Year">
+              </div>
+            </div>
+            <div class="field">
+              <label for="dueTime">Due time</label>
+              <input type="time" id="dueTime" value="23:59">
+            </div>
+          </div>
+          <div class="field">
+            <label for="priority">Priority</label>
+            <select id="priority">
+              <option value="high">High</option>
+              <option value="medium" selected>Medium</option>
+              <option value="low">Low</option>
+            </select>
+          </div>
+          <div class="form-err" id="formErr"></div>
+          <button type="submit" class="submit-btn" id="submitBtn">Pin to board</button>
+          <button type="button" class="import-btn" id="cancelEditBtn" hidden>Cancel edit</button>
+        </form>
+        <button type="button" class="import-btn" id="importBtn">📅 Import from calendar feed (.ics)</button>
+        <input type="file" id="icsInput" accept=".ics,text/calendar" hidden>
+        <p class="import-status" id="importStatus"></p>
+      </section>
+
+      <section class="panel" aria-label="Summary">
+        <h2>This week at a glance</h2>
+        <div class="stat-row"><span>Due tomorrow</span><span class="stat-num" id="statTomorrow">0</span></div>
+        <div class="stat-row"><span>Due today</span><span class="stat-num" id="statToday">0</span></div>
+        <div class="stat-row"><span>Overdue</span><span class="stat-num" id="statOverdue">0</span></div>
+        <div class="stat-row"><span>Upcoming</span><span class="stat-num" id="statUpcoming">0</span></div>
+        <div class="stat-row"><span>Completed</span><span class="stat-num" id="statDone">0</span></div>
+      </section>
+    </div>
+
+    <main>
+      <div id="groups"></div>
+    </main>
+
+  </div>
+
+  <footer class="note">Everything here stays on this device — nothing is sent anywhere.</footer>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>
