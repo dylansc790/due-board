@@ -7,8 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="./assets/index-DKSukIG8.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-CgYNzgi5.css">
+  <script type="module" crossorigin src="./assets/index-CTSv7Z0O.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-B4ZFWxB3.css">
 </head>
 <body>
 <div class="wrap">
@@ -99,6 +99,15 @@
         <button type="button" class="import-btn" id="importBtn">📅 Import from calendar feed (.ics)</button>
         <input type="file" id="icsInput" accept=".ics,text/calendar" hidden>
         <p class="import-status" id="importStatus"></p>
+        <details class="import-help">
+          <summary>How do I get this file from Canvas?</summary>
+          <ol>
+            <li>In Canvas, open <strong>Calendar</strong> and find <strong>Calendar Feed</strong>.</li>
+            <li>Copy the link and open it in a new browser tab. A <code>.ics</code> file downloads.</li>
+            <li>Come back here and choose that file with the button above.</li>
+          </ol>
+          <p>That link is private: anyone who has it can see your calendar, so keep it to yourself. Importing again later updates changed due dates, and assignments already due before today are skipped.</p>
+        </details>
       </section>
 
       <section class="panel" aria-label="Summary">
