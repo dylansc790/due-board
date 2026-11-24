@@ -7,8 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="./assets/index-CTSv7Z0O.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-B4ZFWxB3.css">
+  <script type="module" crossorigin src="./assets/index-D9QlffJf.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BQ2IWDpx.css">
 </head>
 <body>
 <div class="wrap">
@@ -84,14 +84,6 @@
               <input type="time" id="dueTime" value="23:59">
             </div>
           </div>
-          <div class="field">
-            <label for="priority">Priority</label>
-            <select id="priority">
-              <option value="high">High</option>
-              <option value="medium" selected>Medium</option>
-              <option value="low">Low</option>
-            </select>
-          </div>
           <div class="form-err" id="formErr"></div>
           <button type="submit" class="submit-btn" id="submitBtn">Pin to board</button>
           <button type="button" class="import-btn" id="cancelEditBtn" hidden>Cancel edit</button>
@@ -121,6 +113,10 @@
     </div>
 
     <main>
+      <div class="view-tabs" role="tablist" aria-label="Board view">
+        <button type="button" role="tab" id="tabList" class="view-tab" aria-selected="true">List</button>
+        <button type="button" role="tab" id="tabCalendar" class="view-tab" aria-selected="false">Calendar</button>
+      </div>
       <div id="finder" class="finder" role="search" hidden>
         <div class="finder-search">
           <input type="search" id="searchBox" placeholder="Search assignments" aria-label="Search assignments" autocomplete="off">
@@ -129,12 +125,23 @@
         <div id="courseChips" class="course-chips" role="group" aria-label="Show one course"></div>
       </div>
       <div id="groups"></div>
+      <div id="calendar" class="calendar" hidden></div>
     </main>
 
   </div>
 
   <footer class="note">Everything here stays on this device — nothing is sent anywhere.</footer>
 </div>
+<dialog id="detail" class="detail" aria-labelledby="detailTitle">
+  <h3 id="detailTitle"></h3>
+  <p id="detailCourse" class="detail-course"></p>
+  <p id="detailDue" class="detail-due"></p>
+  <p id="detailStatus" class="detail-status"></p>
+  <div class="detail-actions">
+    <button type="button" id="detailEdit" class="detail-edit">Edit</button>
+    <button type="button" id="detailClose" class="chip">Close</button>
+  </div>
+</dialog>
 <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
 </body>
 </html>
